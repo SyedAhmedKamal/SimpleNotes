@@ -5,4 +5,5 @@
     <string name="add_note">ADD_NOTE</string>
     <string name="addimagenew">addImageNew</string>
     <string name="search">Search</string>
+    <string name="display_image">DISPLAY_IMAGE</string>
 </resources>
