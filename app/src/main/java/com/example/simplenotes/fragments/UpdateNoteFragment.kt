@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.simplenotes.R
@@ -62,12 +64,16 @@ class UpdateNoteFragment : Fragment() {
 
                 val note = Note(currentNote.id, title, description, imagePath, updatedTimeStamp)
                 notesViewModel.updateNote(note)
+
+                val directions =
+                    UpdateNoteFragmentDirections.actionUpdateNoteFragmentToHomeFragment()
+                it.findNavController().navigate(directions)
+
             } else {
                 Toast.makeText(context?.applicationContext, "Empty note", Toast.LENGTH_LONG).show()
             }
 
         }
-
 
     }
 
@@ -89,7 +95,11 @@ class UpdateNoteFragment : Fragment() {
     }
 
     private fun deleteNote() {
-        TODO("Not yet implemented")
+
+        val directions = UpdateNoteFragmentDirections.actionUpdateNoteFragmentToHomeFragment()
+        findNavController().navigate(directions)
+        notesViewModel.deleteNote(currentNote)
+        Toast.makeText(context?.applicationContext, "Note Deleted", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {
