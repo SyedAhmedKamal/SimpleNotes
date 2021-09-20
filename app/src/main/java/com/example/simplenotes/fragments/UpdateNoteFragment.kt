@@ -13,8 +13,10 @@ import com.example.simplenotes.databinding.FragmentUpdateNoteBinding
 import com.example.simplenotes.model.Note
 import com.example.simplenotes.ui.MainActivity
 import com.example.simplenotes.viewmodel.NoteViewModel
+import dev.shreyaspatil.MaterialDialog.AbstractDialog
 import java.text.SimpleDateFormat
 import java.util.*
+import dev.shreyaspatil.MaterialDialog.MaterialDialog
 
 
 class UpdateNoteFragment : Fragment() {
@@ -88,7 +90,22 @@ class UpdateNoteFragment : Fragment() {
 
         when (item.itemId) {
             R.id.delete_note -> {
-                deleteNote()
+
+
+                val mDialog = MaterialDialog.Builder(requireActivity())
+                    .setTitle("Delete Note?")
+                    .setMessage("Are you sure want to delete this note?")
+                    .setCancelable(false)
+                    .setPositiveButton("Delete") { dialogInterface, which ->
+                        deleteNote()
+                        dialogInterface.dismiss()
+                    }
+                    .setNegativeButton("Cancel") { dialogInterface, which ->
+                        dialogInterface.dismiss()
+                    }
+                    .build()
+                mDialog.show()
+
             }
         }
         return super.onOptionsItemSelected(item)
