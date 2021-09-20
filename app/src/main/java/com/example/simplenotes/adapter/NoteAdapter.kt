@@ -1,8 +1,10 @@
 package com.example.simplenotes.adapter
 
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.RoundedCorner
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -48,9 +50,14 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
         holder.itemBinding.displayNoteTitle.text = currNote.noteTitle
         holder.itemBinding.displayNoteDescription.text = currNote.noteDescription
-        holder.itemBinding.displayImageView.load(currNote.imageFilePath) {
-            transformations(RoundedCornersTransformation(32f))
+
+        currNote.imageFilePath?.let {
+
+            holder.itemBinding.displayImageView.visibility = View.VISIBLE
+            holder.itemBinding.displayImageView.setImageBitmap(BitmapFactory.decodeFile(currNote.imageFilePath))
+
         }
+
         holder.itemBinding.timeStampTextView.text = currNote.timeStamp
         Log.d("MyTag", "onBindViewHolder: ${currNote.timeStamp}")
 

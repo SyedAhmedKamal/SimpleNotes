@@ -2,6 +2,7 @@ package com.example.simplenotes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import androidx.lifecycle.ViewModelProvider
 import com.example.simplenotes.R
 import com.example.simplenotes.database.NoteDatabase
@@ -9,6 +10,7 @@ import com.example.simplenotes.databinding.ActivityMainBinding
 import com.example.simplenotes.repository.NoteRepository
 import com.example.simplenotes.viewmodel.NoteViewModel
 import com.example.simplenotes.viewmodel.ViewModelProviderFactory
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+
 
 
         val repository = NoteRepository(
