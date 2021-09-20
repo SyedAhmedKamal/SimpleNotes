@@ -4,12 +4,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.RoundedCorner
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.databinding.NotesDisplayStaggeredBinding
 import androidx.recyclerview.widget.DiffUtil
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.example.simplenotes.fragments.HomeFragmentDirections
 import com.example.simplenotes.model.Note
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -51,6 +53,13 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         }
         holder.itemBinding.timeStampTextView.text = currNote.timeStamp
         Log.d("MyTag", "onBindViewHolder: ${currNote.timeStamp}")
+
+        holder.itemView.setOnClickListener {
+
+            val direction = HomeFragmentDirections.actionHomeFragmentToUpdateNoteFragment(currNote)
+            it.findNavController().navigate(direction)
+
+        }
 
     }
 
