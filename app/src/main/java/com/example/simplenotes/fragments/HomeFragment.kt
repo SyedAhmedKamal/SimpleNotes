@@ -55,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
             layoutManager = StaggeredGridLayoutManager(
                 2,
-                StaggeredGridLayoutManager.HORIZONTAL
+                StaggeredGridLayoutManager.VERTICAL
             )
 
             setHasFixedSize(true)

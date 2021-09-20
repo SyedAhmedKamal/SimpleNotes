@@ -1,5 +1,6 @@
 package com.example.simplenotes.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.RoundedCorner
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
             transformations(RoundedCornersTransformation(32f))
         }
         holder.itemBinding.timeStampTextView.text = currNote.timeStamp
+        Log.d("MyTag", "onBindViewHolder: ${currNote.timeStamp}")
 
     }
 

@@ -13,7 +13,8 @@ data class Note(
     val id: Int,
     val noteTitle: String,
     val noteDescription: String,
-    val timeStamp: String,
-    val imageFilePath: String
+    val imageFilePath: String,
+    val timeStamp: String
+
 
 ) : Parcelable

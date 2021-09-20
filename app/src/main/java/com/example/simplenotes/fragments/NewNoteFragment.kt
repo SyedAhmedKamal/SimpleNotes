@@ -1,6 +1,7 @@
 package com.example.simplenotes.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -64,7 +65,8 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         val description = binding.newNoteDescription.text.toString().trim()
         val imagePath = ""
         val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-        val timeStamp: String = sdf.format(Date())
+        val timeStamp: String = "Edited: "+sdf.format(Date())
+        Log.d("MyTag", "saveNote: $timeStamp")
 
         if (title.isNotEmpty()) {
             val note = Note(0, title, description, imagePath, timeStamp)
@@ -86,6 +88,5 @@ class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
         super.onDestroy()
         _binding = null
     }
-
 
 }
