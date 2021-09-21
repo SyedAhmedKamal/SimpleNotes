@@ -17,7 +17,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: NoteAdapter
+    private lateinit var noteAdapter: NoteAdapter
     private lateinit var notesViewModel: NoteViewModel
 
 
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
 
     private fun initRecyclerView() {
-        val noteAdapter = NoteAdapter()
+        noteAdapter = NoteAdapter()
 
         binding.recyclerView.apply {
 
@@ -88,11 +88,40 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+        if (query != null) {
+            searchNote(query)
+        }else{
+            notesViewModel.getAllNote().observe(this, {
+                noteAdapter.differ.submitList(it)
+            })
+        }
+
+
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
+        if (newText != null) {
+
+            searchNote(newText)
+
+        } else {
+            notesViewModel.getAllNote().observe(this, {
+                noteAdapter.differ.submitList(it)
+            })
+        }
+
+        return true
+    }
+
+    private fun searchNote(text: String?) {
+
+        val searchText = "%$text%"
+
+            notesViewModel.searchNote(searchText).observe(this, {
+                noteAdapter.differ.submitList(it)
+            })
+
     }
 
     override fun onDestroy() {

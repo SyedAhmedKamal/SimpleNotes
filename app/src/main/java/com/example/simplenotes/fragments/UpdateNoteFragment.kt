@@ -65,7 +65,11 @@ class UpdateNoteFragment : Fragment() {
                     updateFile?.let {
 
                         binding.updateNoteImageView.visibility = View.VISIBLE
-                        binding.updateNoteImageView.setImageBitmap(BitmapFactory.decodeFile(updateFile?.absolutePath))
+                        binding.updateNoteImageView.setImageBitmap(
+                            BitmapFactory.decodeFile(
+                                updateFile?.absolutePath
+                            )
+                        )
                         Log.d("MyTag", "fileJob: ${updateFile?.absolutePath}")
 
                     }
@@ -143,7 +147,7 @@ class UpdateNoteFragment : Fragment() {
 
         }
 
-        if (updateFile?.absolutePath!=null){
+        if (updateFile?.absolutePath != null) {
             Log.d("MyTag", "Update path: ${updateFile?.absolutePath}")
             binding.updateNoteImageView.visibility = View.VISIBLE
             binding.updateNoteImageView.setImageBitmap(BitmapFactory.decodeFile(updateFile?.absolutePath))
@@ -158,8 +162,30 @@ class UpdateNoteFragment : Fragment() {
 
             if (title.isNotEmpty()) {
 
-                val note = Note(currentNote.id, title, description, updateFile?.absolutePath, updatedTimeStamp)
-                notesViewModel.updateNote(note)
+                // if Updated image is not selected previous will preserve
+                if (updateFile == null) {
+
+                    val note = Note(
+                        currentNote.id,
+                        title,
+                        description,
+                        currentNote.imageFilePath,
+                        updatedTimeStamp
+                    )
+                    notesViewModel.updateNote(note)
+
+                } else {
+
+                    val note = Note(
+                        currentNote.id,
+                        title,
+                        description,
+                        updateFile?.absolutePath,
+                        updatedTimeStamp
+                    )
+                    notesViewModel.updateNote(note)
+
+                }
 
                 val directions =
                     UpdateNoteFragmentDirections.actionUpdateNoteFragmentToHomeFragment()

@@ -51,11 +51,14 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         holder.itemBinding.displayNoteTitle.text = currNote.noteTitle
         holder.itemBinding.displayNoteDescription.text = currNote.noteDescription
 
-        currNote.imageFilePath?.let {
+        if (currNote.imageFilePath!=null) {
 
             holder.itemBinding.displayImageView.visibility = View.VISIBLE
             holder.itemBinding.displayImageView.setImageBitmap(BitmapFactory.decodeFile(currNote.imageFilePath))
 
+        }
+        else{
+            holder.itemBinding.displayImageView.visibility = View.GONE
         }
 
         holder.itemBinding.timeStampTextView.text = currNote.timeStamp
