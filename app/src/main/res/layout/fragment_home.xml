@@ -10,15 +10,17 @@
     >
 
     <ImageView
-        android:contentDescription="@string/add_note"
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:contentDescription="@string/add_note"
         android:src="@drawable/ic_baseline_note_add_24"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_compose_New_note"
@@ -30,7 +32,8 @@
         android:src="@drawable/ic_baseline_create_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="Fab" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
